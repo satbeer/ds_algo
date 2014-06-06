@@ -5,12 +5,12 @@ import com.ds.elements.ListNode;
 public class ListUtils {
 
 	public static ListNode getlinkedList() {
-		ListNode node = new ListNode(6, null);
-		ListNode head = new ListNode.ListBuilder(1).next(
-				new ListNode.ListBuilder(6).next(
-						new ListNode.ListBuilder(6).next(
-								new ListNode.ListBuilder(6).next(
-										new ListNode.ListBuilder(1).next(node).build())
+		ListNode node = new ListNode(3, null);
+		ListNode head = new ListNode.ListBuilder(5).next(
+				new ListNode.ListBuilder(2).next(
+						new ListNode.ListBuilder(9).next(
+								new ListNode.ListBuilder(1).next(
+										new ListNode.ListBuilder(5).next(null).build())
 										.build()).build()).build()).build();
 		//node.next = head;
 		return head;
