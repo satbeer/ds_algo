@@ -7,7 +7,8 @@ public class ListReversal {
 	ListNode head = null;
 	public static void main(String[] args) {
 		ListNode head = ListUtils.getlinkedList();
-		//head = reverseList(head);
+		ListUtils.printList(head);
+		head = reverseList(head);
 		ListUtils.printList(head);
 		//reverseByRecursion(head);
 	}
