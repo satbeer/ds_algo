@@ -1,22 +1,32 @@
-package com.algo.sorting;
+import javax.swing.text.Position;
+
+import com.algo.sorting.MaxHeap;
+import com.algo.sorting.SortUtils;
 
 
-public class MaxHeap {
-	private static final int CAPACITY = 10;
-	private int size = 0;
-	private int[] arr = new int[CAPACITY];
+public class MinHeap {
 
+	private int size;
+	private int[] arr;
+	
+	private final int CAPACITY = 10;
+	
+	MinHeap(){
+		arr = new int[CAPACITY];
+		arr[0] = -1;
+		size = 0;
+	}
+	
 	public void createHeap(int a[]) {
 		if (a.length > CAPACITY-1)
 			throw new IllegalArgumentException(
 					"size of elements to be added should not be greater than capacity");
-		arr[0] = -1;
 		int k =0;
 		for(; k<a.length;k++)
 			arr[k+1] = a[k];
 		size = k;
-		for (int i = size/2; i>=1 ; i--) {
-			maxHeapify(i);
+		for (int i = size/2; i >= 1 ; i--) {
+			minHeapify(i);
 		}
 	}
 	
@@ -25,26 +35,26 @@ public class MaxHeap {
 		arr[1] = arr[size];
 		arr[size] = 0;
 		size--;
-		maxHeapify(1);
+		minHeapify(1);
 		return element;
 	}
-
-	private void maxHeapify(int position) {
-		int left = 2 * position;
-		int right = 2 * position + 1;
-		int largest = position;
-		if (left <= size && arr[left] > arr[position])
-			largest = left;
-
-		if (right <= size && arr[right] > arr[largest])
-			largest = right;
-		if (largest != position) {
-			swapValuesaAtIndices(position, largest);
-			maxHeapify(largest);
+	
+	private void minHeapify(int pos){
+		int left = pos*2;
+		int right = pos*2 + 1;
+		int minimum = pos;
+		if(left <= size && arr[left] < arr[pos])
+			minimum = left;
+		if(right <= size && arr[right] < arr[minimum])
+			minimum = right;
+		
+		if(minimum != pos){
+			swapValuesaAtIndices(pos, minimum);
+			minHeapify(minimum);
 		}
-
 	}
-
+	
+	
 	private void swapValuesaAtIndices(int pos1, int pos2){
 		int tmp = arr[pos1];
 		arr[pos1] = arr[pos2];
@@ -56,7 +66,7 @@ public class MaxHeap {
 	}
 	
 	public static void main(String[] args) {
-		MaxHeap heap = new MaxHeap();
+		MinHeap heap = new MinHeap();
 		int[] arr = SortUtils.createUnsortedArray(9);
 		System.out.println(SortUtils.printArray(arr));
 		heap.createHeap(arr);
@@ -64,4 +74,5 @@ public class MaxHeap {
 		System.out.println("Popping an element from heap : " + heap.pop());
 		System.out.println(SortUtils.printArray(heap.getHeapArray()));
 	}
+	
 }
