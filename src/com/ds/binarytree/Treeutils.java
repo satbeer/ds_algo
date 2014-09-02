@@ -6,7 +6,10 @@ public class Treeutils {
 		TreeNode root = new TreeNode(5);
 		root.left = new TreeNode(2);
 		root.right = new TreeNode(6);
+		root.right.left = new TreeNode(8);
 		root.left.left = new TreeNode(1);
+		root.left.right = new TreeNode(3);
+		root.left.left.left = new TreeNode(4);
 		return root;
 	}
 	
@@ -59,5 +62,9 @@ public class Treeutils {
 		printPaths(root.left, path, pathlen);
 		printPaths(root.right, path, pathlen);
 		
+	}
+	
+	public static void main(String[] args) {
+		printPaths(createTree(), new int[5], 0);
 	}
 }
