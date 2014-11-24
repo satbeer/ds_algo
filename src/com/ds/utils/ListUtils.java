@@ -5,12 +5,11 @@ import com.ds.elements.ListNode;
 public class ListUtils {
 
 	public static ListNode getlinkedList() {
-		ListNode node = new ListNode(3, null);
-		ListNode head = new ListNode.ListBuilder(8).next(
-				new ListNode.ListBuilder(2).next(
-						new ListNode.ListBuilder(9).next(
-								new ListNode.ListBuilder(1).next(
-										new ListNode.ListBuilder(4).next(null).build())
+		ListNode head = new ListNode.ListBuilder(2).next(
+				new ListNode.ListBuilder(4).next(
+						new ListNode.ListBuilder(6).next(
+								new ListNode.ListBuilder(7).next(
+										new ListNode.ListBuilder(10).next(null).build())
 										.build()).build()).build()).build();
 		//node.next = head;
 		return head;
@@ -32,6 +31,16 @@ public class ListUtils {
 			head = head.next;
 		}
 		return len;
+	}
+	
+	public static ListNode getCircularLinkedList(){
+		ListNode head = getlinkedList();
+		ListNode temp = head;
+		while(temp.next != null){
+			temp = temp.next;
+		}
+		temp.next = head;
+		return head;
 	}
 
 }
