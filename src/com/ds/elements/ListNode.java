@@ -31,4 +31,9 @@ public class ListNode {
 		data = builder.data;
 		next = builder.next;
 	}
+	
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return new ListNode(this.data, this.next==null?null:(ListNode)this.next.clone());
+	}
 }
